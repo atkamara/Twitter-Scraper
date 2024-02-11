@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Webdriver.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/codemirror_foldgutter.css') }}">
+
+    <section class="u-clearfix u-section-1" id="sec-2c11">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-align-center u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h3 class="u-text u-text-default u-text-1">Timeout</h3>
+                  <div class="u-align-center u-clearfix u-custom-html u-custom-html-1">
+                    <form  action="{{url_for('Webdriver',submitted_form_name ='Timeout')}}" method="POST">
+                      {{ TimeoutForm.csrf_token }}
+                      <div>
+                        <label for="search_bar">Search Bar</label>
+                        <br>
+                        {{TimeoutForm.search_bar(min="0", max="300", value=Timeout_default_json.search_bar, oninput="search_bar_num.value = this.value")}}
+                        <output id="search_bar_num">{{Timeout_default_json.search_bar}}</output>
+                      </div>
+                      <div>
+                        <label for="recent">Recent Stories</label>
+                        <br>
+                        {{TimeoutForm.recent(min="0", max="300", value=Timeout_default_json.recent, oninput="recent_num.value = this.value")}}
+                        <output id="recent_num">{{Timeout_default_json.recent}}</output>
+                      </div>
+                      <div>
+                        <label for="list_of_articles">List of articles</label>
+                        <br>
+                        {{TimeoutForm.list_of_articles(min="0", max="300", value=Timeout_default_json.list_of_articles ,oninput="list_of_articles_num.value = this.value")}}
+                        <output id="list_of_articles_num">{{Timeout_default_json.list_of_articles}}</output>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <div>
+                        {{TimeoutForm.submit(class_="u-btn u-btn-submit u-button-style")}}
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h3 class="u-text u-text-default u-text-2">Browser</h3>
+                  <div class="u-align-center u-clearfix u-custom-html u-custom-html-2">
+                    <form action="{{url_for('Webdriver',submitted_form_name ='Browser')}}" method="POST">
+                       {{ BrowserForm.csrf_token }}
+                      <div>
+                        {{BrowserForm.browser}}
+                      </div>
+                      <div>
+                        <label for="headless">Headless</label>
+                        {{BrowserForm.headless(value="--headless",checked=Browser_default_json.headless)}}
+                      </div>
+                      <div>
+                        <label for="no-sandbox">No-sandbox</label>
+                        {{BrowserForm.no_sandbox(value="no-sandbox",checked=Browser_default_json.no_sandbox)}}
+                      </div>
+                      <div>
+                        <label for="no-images">No Images</label>
+                        {{BrowserForm.no_images(value="{'profile.managed_default_content_settings.images':2}",checked=Browser_default_json.no_images)}}
+                      </div>
+                      <div>
+                        <label for="hheight">height</label>
+                        <br>
+                     {{BrowserForm.hheight(min="0", max="3000", value=Browser_default_json.hheight ,oninput="hheight_num.value = this.value")}}
+                     <output id="hheight_num">{{Browser_default_json.hheight}}</output>
+                       </div>
+                      <div>
+                        <label for="wwidth">width</label>
+                        <br>
+                        {{BrowserForm.wwidth(min="0", max="2000", value=Browser_default_json.wwidth ,oninput="wwidth_num.value = this.value")}}
+                     <output id="wwidth_num">{{Browser_default_json.wwidth}}</output>
+                      </div>
+                      <br>
+                      <br>
+                      <div>
+                        {{BrowserForm.submit(class_="u-btn u-btn-submit u-button-style")}}
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+                <div class="u-container-layout u-container-layout-3">
+                  <h3 class="u-text u-text-default u-text-3">Shake</h3>
+                  <div class="u-form u-form-1">
+                    <form action="{{url_for('Webdriver',submitted_form_name ='Shake')}}" method="POST" style="padding: 34px;">
+                    {{ ShakeForm.csrf_token }}
+                    <div >
+                      <label for="css_form" class="u-label">{{ShakeForm.json.label}}</label>
+                      <br>
+                      {{ShakeForm.json(placeholder="Put your json file here",rows="10",cols="50",id="css_form")|text_area_value(text=Shake_default_json)}}
+                     {% if ShakeForm.json.errors %}
+                      <ul class="errors">
+                          {% for error in ShakeForm.json.errors %}
+                            <li class="error">
+                                <i class="fas fa-exclamation"></i> <span class="error-message" style="color:red;">{{ error }}</span>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    {% endif %}
+                    </div>
+                    {{ShakeForm.submit(class_="u-btn u-btn-submit u-button-style")}}
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<script src="{{ url_for('static', filename='js/codemirror/codemirror.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/mode_javascript.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/foldgutter.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/brace-fold.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/comment-fold.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/fold-code.js') }}"></script>
+<script>
+
+      var editor = CodeMirror.fromTextArea(document.getElementById("css_form"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        mode: "application/ld+json",
+    extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+        lineWrapping: true,
+        foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+      });
+    
+</script>
+    
+{% endblock %}
+   

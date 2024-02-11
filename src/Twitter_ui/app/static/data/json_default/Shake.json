@@ -1,0 +1,14 @@
+{"iterations":[
+         {
+            "n_shake":4,
+            "sleep":5
+         },
+         {
+            "n_shake":8,
+            "sleep":5
+         },
+         {
+            "n_shake":16,
+            "sleep":10
+         }
+]}

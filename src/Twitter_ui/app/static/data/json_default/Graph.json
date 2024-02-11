@@ -1,0 +1,15 @@
+{
+         "n_branches"     : 1,
+         "default_args"   : {
+               "owner"    : "Abdourahmane"},
+           "kwargs"       : {
+                                      
+           "description"  : "search on twitter and save results",
+     "schedule_interval"  : "",
+            "start_date"  : "2021-11-19",
+               "catchup"  : false,
+                  "tags"  : ["twitter"]
+}
+
+}
+                              

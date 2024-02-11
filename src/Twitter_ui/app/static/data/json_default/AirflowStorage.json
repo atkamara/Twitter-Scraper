@@ -1,0 +1,1 @@
+{"airflow_db": "sqlite:////tmp/airflow/airflow.db", "airflow_output": "my/twitter/data/", "airflow_Executor": "SequentialExecutor"}

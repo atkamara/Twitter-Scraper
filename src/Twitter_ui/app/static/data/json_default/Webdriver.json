@@ -1,0 +1,34 @@
+{
+      "timeout":{
+         "search_bar":120,
+         "recent":60,
+         "article_list":120
+      },
+      "browser":{
+         "choice":"Chrome",
+            "arguments":[
+               "--headless",
+               "--no-sandbox",
+               "--window-size=1280,720"
+            ],
+            "experimental_options":[
+               {
+                  "profile.managed_default_content_settings.images":2
+               }
+            ]
+         },
+      "shake":[
+         {
+            "n_shake":4,
+            "sleep":5
+         },
+         {
+            "n_shake":8,
+            "sleep":5
+         },
+         {
+            "n_shake":16,
+            "sleep":10
+         }
+      ]
+}

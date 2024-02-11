@@ -1,0 +1,9 @@
+{
+         "browser":"Chrome",
+            "headless":true,
+               "no_sandbox":true,
+               "no_images":true,
+
+              "hheight":1280,
+              "wwidth":720
+   }

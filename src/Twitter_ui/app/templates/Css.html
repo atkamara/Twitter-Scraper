@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/Css.css') }}"
+        type="text/css"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/codemirror_foldgutter.css') }}">
+
+    <section class=" u-clearfix u-section-1" id="sec-f939">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div>
+          <form action="{{url_for('Css')}}" method="POST" style="padding: 34px;">
+            {{ CssForm.csrf_token }}
+            <div >
+              <label for="css_form" class="u-label">{{CssForm.json.label}}</label>
+              <br>
+              {{CssForm.json(placeholder="Put your json file here",rows="10",cols="50",id="css_form")|text_area_value(text=Css_default_json)}}
+              {% if CssForm.json.errors %}
+              <ul class="errors">
+                  {% for error in CssForm.json.errors %}
+                    <li class="error">
+                        <i class="fas fa-exclamation"></i> <span class="error-message" style="color:red;">{{ error }}</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+            {{CssForm.submit(class_="u-btn u-btn-submit u-button-style")}}
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+<script src="{{ url_for('static', filename='js/codemirror/codemirror.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/mode_javascript.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/foldgutter.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/brace-fold.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/comment-fold.js') }}"></script>
+<script src="{{ url_for('static', filename='js/codemirror/fold-code.js') }}"></script>
+<script>
+
+      var editor = CodeMirror.fromTextArea(document.getElementById("css_form"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        mode: "application/ld+json",
+    extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+        lineWrapping: true,
+        foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+      });
+    
+</script>
+
+{% endblock %}
+   

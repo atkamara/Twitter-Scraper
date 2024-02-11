@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <link
+        rel="stylesheet"
+        href="{{url_for('static', filename='css/success.css') }}"
+        type="text/css"
+    />
+    <section class="u-align-center u-clearfix u-section-1" id="sec-890d">
+      <div class="u-sheet u-valign-middle u-sheet-1">
+
+    <div class="success-wrapper">
+      <h2>SUCCESS</h2>
+      <p>{{form_sucess_object.name}} object saved in file "{{form_sucess_object.path}}" </p>
+      <a href="{{ form_sucess_object.url }}">
+          <button class="u-btn u-btn-submit u-button-style">Go Back</button>
+      </a>
+    </div>
+</div>
+</section>
+
+{% endblock %}

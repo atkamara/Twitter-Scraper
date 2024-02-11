@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/Search.css') }}"
+        type="text/css"
+    />
+    <section class=" u-clearfix u-section-1" id="sec-1414">
+      <div class="u-clearfix u-sheet  u-sheet-1">
+        <div class="u-form u-form-1">
+                     <form action="{{url_for('Search')}}" method="POST">
+                       {{ SearchForm.csrf_token }}
+                      <div>
+                          <label for="query" class="u-label">Query</label>
+                        {{SearchForm.query(class_="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white",value=Search_default_json.query)}}
+                      </div>
+                     <div>
+                          <label for="filters" class="u-label">Filters</label>
+                        {{SearchForm.filters(class_="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white",value=Search_default_json.filters)}}
+                      </div>  
+                      <div>
+                          <label for="start_date" class="u-label">Start Date</label>
+                        {{SearchForm.start_date(class_="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white",value=Search_default_json.start_date)}}
+                      </div>    
+                      <div>
+                          <label for="end_date" class="u-label">End Date</label>
+                        {{SearchForm.end_date(class_="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white",value=Search_default_json.end_date)}}
+                      </div>  
+                      <div>
+                          <label for="search_range" class="u-label">Time Range per request(in days)</label>
+                        {{SearchForm.search_range(class_="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white",value=Search_default_json.search_range)}}
+                      </div>            
+                      <div>
+                        <br>
+                          <label for="recent" >Sort by recent</label>
+                          {{SearchForm.recent(checked=Search_default_json.recent)}}
+                      </div>      
+                      <div>
+                        {{SearchForm.submit(class_="u-btn u-btn-submit u-button-style")}}
+                      </div>
+             </form>
+        </div>
+      </div>
+    </section>
+    
+{% endblock %}
+   

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/Storage.css') }}"
+        type="text/css"
+    />
+    <section class="u-clearfix u-section-1" id="sec-8a3e">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-form u-form-1"> 
+          <h2>TW-XTR</h2>
+
+           <form action="{{url_for('Storage')}}" method="POST">
+                       {{ TWXTStorageForm.csrf_token }}
+                      <div>
+                        <label for="TWXT_output" class="u-label">Enter the path to the directory where json files will be saved</label>
+                        {{TWXTStorageForm.TWXT_output(class_="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white",value=TWXTStorage_default_json.TWXT_output)}}
+                      </div>                      
+                      <br>
+                      <br>
+                      <div>
+                        {{TWXTStorageForm.submit(class_="u-btn u-btn-submit u-button-style")}}
+                      </div>
+             </form>
+        </div>
+      </div>
+    </section>
+    
+{% endblock %}
